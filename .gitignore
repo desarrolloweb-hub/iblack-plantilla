@@ -1,0 +1,45 @@
+# Laravel
+/vendor
+/node_modules
+/public/build
+/public/hot
+/storage/*.key
+/.env
+/.env.*
+!/.env.example
+/.phpunit.result.cache
+/.vscode
+/.idea
+/.DS_Store
+
+# Laravel storage
+/storage/app/public
+/storage/debugbar
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/logs
+
+# npm and yarn
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+/pnpm-debug.log*
+
+# Build and temp
+/public/manifest.json
+/public/mix-manifest.json
+/public/hot
+/public/storage
+/storage/*.sqlite
+/storage/*.sqlite3
+/public/vendor
+
+# OS Files
+.DS_Store
+
+# Vite / Node
+/node_modules
+/.vite
+/dist
