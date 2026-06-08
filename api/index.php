@@ -2,9 +2,12 @@
 
 // Create writable /tmp directories Laravel expects to exist
 $tmpDirs = [
-    '/tmp/storage/framework/views',
+    '/tmp/storage/app',
+    '/tmp/storage/app/public',
     '/tmp/storage/framework/cache/data',
     '/tmp/storage/framework/sessions',
+    '/tmp/storage/framework/views',
+    '/tmp/storage/framework/testing',
     '/tmp/storage/logs',
 ];
 foreach ($tmpDirs as $dir) {
@@ -13,7 +16,13 @@ foreach ($tmpDirs as $dir) {
     }
 }
 
-// Force runtime env vars (vercel.json `env` is unreliable with `builds:` legacy config)
+// Point Laravel's storage_path() at /tmp/storage (writable) instead of /var/task/... (read-only)
+$_ENV['LARAVEL_STORAGE_PATH'] = '/tmp/storage';
+$_SERVER['LARAVEL_STORAGE_PATH'] = '/tmp/storage';
+putenv('LARAVEL_STORAGE_PATH=/tmp/storage');
+
+// Runtime env defaults — vercel.json's `env` section isn't always honored by the
+// vercel-php builder, so we set them here as well. Only fills in if not already set.
 $runtimeEnv = [
     'APP_ENV'              => 'production',
     'APP_DEBUG'            => 'false',
